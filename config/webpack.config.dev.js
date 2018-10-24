@@ -143,10 +143,10 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'src': path.resolve(__dirname, '..', 'src/'),
-      'common': path.resolve(__dirname, '..', 'common/'),
-      'assets': path.resolve(__dirname, '..', 'common/assets/'),
-      'components': path.resolve(__dirname, '..', 'common/components/'),
-      'containers': path.resolve(__dirname, '..', 'containers/'),
+      'common': path.resolve(__dirname, '..', 'src/common/'),
+      'assets': path.resolve(__dirname, '..', 'src/common/assets/'),
+      'components': path.resolve(__dirname, '..', 'src/common/components/'),
+      'containers': path.resolve(__dirname, '..', 'src/containers/'),
       'react-native': 'react-native-web',
     },
     plugins: [

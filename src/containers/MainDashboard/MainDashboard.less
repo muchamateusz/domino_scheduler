@@ -1,0 +1,52 @@
+.main-dashboard {
+  position: relative;
+  padding: 20px 0;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  background-color: white;
+  &__trash {
+    position: relative;
+  }
+  &__time-axis {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-right: 1px solid black;
+    flex: 1;
+  }
+  &__assignments-axis {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  &__item {
+    border-radius: 10px;
+    user-select: none;
+    border-left: 1px solid grey;
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px grey;
+    &-content {
+      padding: 10px;
+    }
+    // &:before {
+    //   content: "godzina";
+    //   color: black;
+    //   border-right: 1px solid black;
+    //   display: flex;
+    //   align-items: center;
+    //   position: absolute;
+    //   right: 130%;
+    //   height: 100%;
+    //   padding-right: 10px;
+    //   top: 0;
+    // }
+  }
+}
