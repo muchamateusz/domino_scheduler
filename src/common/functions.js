@@ -1,3 +1,5 @@
+import { ITEM_TYPES } from './enums';
+
 export const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -8,13 +10,14 @@ export const reorder = (list, startIndex, endIndex) => {
 export const getItems = count =>
   Array.from({ length: count }, (_, index) => index).map(index => ({
     id: `item-${index}`,
+    type: ITEM_TYPES.ACTIVE,
     content: `item ${index}`
   }));
 
-export const getItemStyle = (isDragging, draggableStyle) => ({
-  backgroundImage: isDragging
+export const getItemStyle = (isDragging, draggableStyle, type) => ({
+  backgroundImage: type !== ITEM_TYPES.GHOST ? (isDragging
     ? "linear-gradient(to left, #18b153, #0f7fa1)"
-    : "linear-gradient(to right, #18b153, #0f7fa1)",
+    : "linear-gradient(to right, #18b153, #0f7fa1)") : 'none',
   ...draggableStyle
 });
 

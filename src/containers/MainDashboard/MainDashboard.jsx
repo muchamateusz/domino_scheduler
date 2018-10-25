@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import classNames from "classnames";
 
 import {
   reorder,
@@ -8,6 +9,7 @@ import {
   getItemStyle,
   parseTimeFormat
 } from "common/functions";
+import { ITEM_TYPES } from "common/enums";
 
 import "./MainDashboard.less";
 
@@ -22,23 +24,36 @@ class MainDashboard extends Component {
   }
 
   onDragEnd = result => {
-    // DOROBIC OBSLUGE USUWANIA ZADAN
     if (!result.destination) {
       return;
+    } else if (result.destination.droppableId === "erase") {
+      this.setState(prevState => {
+        const newState = { ...prevState };
+        newState.items[result.source.index].type = ITEM_TYPES.GHOST;
+        return { ...newState };
+      });
+      return;
+    } else {
+      const items = reorder(
+        this.state.items,
+        result.source.index,
+        result.destination.index
+      );
+
+      this.setState({ items });
     }
-    const items = reorder(
-      this.state.items,
-      result.source.index,
-      result.destination.index
-    );
-    this.setState({ items });
+  };
+
+  onClickHandler = event => {
+    console.log("event :", event);
+    debugger;
   };
 
   render() {
     return (
       <div className="main-dashboard">
         <DragDropContext onDragEnd={this.onDragEnd}>
-        <div className="main-dashboard__toolbox">Toolbox</div>
+          <div className="main-dashboard__toolbox">Toolbox</div>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <React.Fragment>
@@ -59,31 +74,57 @@ class MainDashboard extends Component {
                   ref={provided.innerRef}
                   style={getListStyle(snapshot.isDraggingOver)}
                 >
-                  {this.state.items.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                      data-react-beautiful-dnd-drag-handle
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          className="main-dashboard__assignments-axis__item"
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
+                  {this.state.items.map((item, index) => {
+                    const renderedElement =
+                      item.type === ITEM_TYPES.ACTIVE ? (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                          data-react-beautiful-dnd-drag-handle
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              className={classNames(
+                                "main-dashboard__assignments-axis__item",
+                                {
+                                  "main-dashboard__assignments-axis__item--ghost":
+                                    item.type === ITEM_TYPES.GHOST
+                                }
+                              )}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style,
+                                item.type
+                              )}
+                            >
+                              <div className="main-dashboard__item-content">
+                                {item.content}
+                              </div>
+                            </div>
                           )}
+                        </Draggable>
+                      ) : (
+                        <div
+                          className={classNames(
+                            "main-dashboard__assignments-axis__item",
+                            {
+                              "main-dashboard__assignments-axis__item--ghost":
+                                item.type === ITEM_TYPES.GHOST
+                            }
+                          )}
+                          onClick={this.onClickHandler}
                         >
                           <div className="main-dashboard__item-content">
                             {item.content}
                           </div>
                         </div>
-                      )}
-                    </Draggable>
-                  ))}
+                      );
+                    return renderedElement;
+                  })}
                 </div>
               </React.Fragment>
             )}
@@ -95,7 +136,7 @@ class MainDashboard extends Component {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                Trash
+                Trash Can
                 {provided.placeholder}
               </div>
             )}
