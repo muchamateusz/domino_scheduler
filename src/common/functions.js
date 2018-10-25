@@ -1,4 +1,3 @@
-
 export const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -20,5 +19,24 @@ export const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 export const getListStyle = isDraggingOver => ({
-  border: isDraggingOver ? "1px dashed grey" : "none",
+  border: isDraggingOver ? "1px dashed grey" : "none"
 });
+
+export const parseTimeFormat = value => {
+
+  let newActualValue, newPreviousValue;
+
+  !value
+    ? (newPreviousValue = 23)
+    : (newPreviousValue = value - 1);
+
+  newPreviousValue < 10
+    ? (newPreviousValue = "0" + newPreviousValue)
+    : (newPreviousValue = "" + newPreviousValue);
+
+  value < 10
+    ? newActualValue = "0" + value
+    : newActualValue = "" + value;
+
+  return `${newPreviousValue}:00 - ${newActualValue}:00`;
+};

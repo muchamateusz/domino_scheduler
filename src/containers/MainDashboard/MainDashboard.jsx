@@ -5,7 +5,8 @@ import {
   reorder,
   getItems,
   getListStyle,
-  getItemStyle
+  getItemStyle,
+  parseTimeFormat
 } from "common/functions";
 
 import "./MainDashboard.less";
@@ -48,7 +49,7 @@ class MainDashboard extends Component {
                         className="main-dashboard__time-axis__item"
                         key={`${_}_${index}`}
                       >
-                        {`${index}:00`}
+                        {parseTimeFormat(index)}
                       </div>
                     );
                   })}

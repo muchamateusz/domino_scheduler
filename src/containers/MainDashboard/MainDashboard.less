@@ -16,14 +16,12 @@
     border: 1px dashed grey;
     padding: 20px;
     margin: 0 10px;
-    // background-color: red;
   }
   &__toolbox {
     color: black;
-    border: 1px dashed grey;
     padding: 20px;
     margin: 0 10px;
-    // background-color: green;
+    flex: 1;
   }
   &__time-axis {
     display: flex;
@@ -31,9 +29,38 @@
     align-items: flex-end;
     // background-color: blue;
     margin-right: 20px;
-    border-right: 1px solid black;
+    border-right: 3px dashed rgba(0, 0, 0, 0.8);
     padding: 10px;
     flex: 1;
+    position: relative;
+    &::before {
+      content: '';
+      border: solid rgba(0, 0, 0, 0.8);
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      width: 2px;
+      height: 2px;
+      position: absolute;
+      top: -14px;
+      right: -7px;
+    }
+    &::after {
+      content: '';
+      border: solid rgba(0, 0, 0, 0.8);
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      width: 2px;
+      height: 2px;
+      position: absolute;
+      bottom: -6px;
+      right: -7px;
+    }
     &__item {
       margin-bottom: 10px;
       color: black;
@@ -45,13 +72,11 @@
     }
   }
   &__assignments-axis {
-    // background-color: magenta;
+    flex: 2;
     margin: 0 auto;
-    flex: 1;
     padding: 10px;
     &__item {
       background-size: 101%;
-      width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
