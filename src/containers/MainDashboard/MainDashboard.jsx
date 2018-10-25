@@ -37,19 +37,22 @@ class MainDashboard extends Component {
     return (
       <div className="main-dashboard">
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable className="main-dashboard__trash" droppableId="erase">
-          {/* POPRAWIC TEN KOD ZEBY BYL KOSZ NA ZADANIA */}
-            {(provided, snapshot) => (
-              <div className="" ref={provided.innerRef} {...provided.droppableProps}>
-                Good to go
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
+        <div className="main-dashboard__toolbox">Toolbox</div>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <React.Fragment>
-                <div className="main-dashboard__time-axis" />
+                <div className="main-dashboard__time-axis">
+                  {[...Array(24)].map((_, index) => {
+                    return (
+                      <div
+                        className="main-dashboard__time-axis__item"
+                        key={`${_}_${index}`}
+                      >
+                        {`${index}:00`}
+                      </div>
+                    );
+                  })}
+                </div>
                 <div
                   className="main-dashboard__assignments-axis"
                   ref={provided.innerRef}
@@ -60,10 +63,11 @@ class MainDashboard extends Component {
                       key={item.id}
                       draggableId={item.id}
                       index={index}
+                      data-react-beautiful-dnd-drag-handle
                     >
                       {(provided, snapshot) => (
                         <div
-                          className="main-dashboard__item"
+                          className="main-dashboard__assignments-axis__item"
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
@@ -81,6 +85,18 @@ class MainDashboard extends Component {
                   ))}
                 </div>
               </React.Fragment>
+            )}
+          </Droppable>
+          <Droppable droppableId="erase">
+            {(provided, snapshot) => (
+              <div
+                className="main-dashboard__trash"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                Trash
+                {provided.placeholder}
+              </div>
             )}
           </Droppable>
         </DragDropContext>

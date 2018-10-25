@@ -1,8 +1,9 @@
 .main-dashboard {
   position: relative;
-  padding: 20px 0;
+  padding: 50px 0 100px 0;
   top: 100px;
   left: 0;
+  min-height: 100vh;
   width: 100%;
   overflow: auto;
   box-sizing: border-box;
@@ -11,42 +12,59 @@
   justify-content: center;
   background-color: white;
   &__trash {
-    position: relative;
+    color: black;
+    border: 1px dashed grey;
+    padding: 20px;
+    margin: 0 10px;
+    // background-color: red;
+  }
+  &__toolbox {
+    color: black;
+    border: 1px dashed grey;
+    padding: 20px;
+    margin: 0 10px;
+    // background-color: green;
   }
   &__time-axis {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
+    // background-color: blue;
+    margin-right: 20px;
     border-right: 1px solid black;
+    padding: 10px;
     flex: 1;
+    &__item {
+      margin-bottom: 10px;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 25px;
+      border-bottom: 1px dotted grey;
+    }
   }
   &__assignments-axis {
+    // background-color: magenta;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
     flex: 1;
-  }
-  &__item {
-    border-radius: 10px;
-    user-select: none;
-    border-left: 1px solid grey;
-    position: relative;
-    margin-bottom: 10px;
-    box-shadow: 2px 2px 5px grey;
-    &-content {
-      padding: 10px;
+    padding: 10px;
+    &__item {
+      background-size: 101%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      position: relative;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      user-select: none;
+      box-shadow: 2px 2px 5px grey;
+      &-content {
+        padding: 10px;
+      }
     }
-    // &:before {
-    //   content: "godzina";
-    //   color: black;
-    //   border-right: 1px solid black;
-    //   display: flex;
-    //   align-items: center;
-    //   position: absolute;
-    //   right: 130%;
-    //   height: 100%;
-    //   padding-right: 10px;
-    //   top: 0;
-    // }
   }
 }

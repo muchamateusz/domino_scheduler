@@ -13,16 +13,12 @@ export const getItems = count =>
   }));
 
 export const getItemStyle = (isDragging, draggableStyle) => ({
-  background: isDragging
+  backgroundImage: isDragging
     ? "linear-gradient(to left, #18b153, #0f7fa1)"
     : "linear-gradient(to right, #18b153, #0f7fa1)",
   ...draggableStyle
 });
 
 export const getListStyle = isDraggingOver => ({
-  borderTop: isDraggingOver ? "1px dotted grey" : "none",
-  borderRight: isDraggingOver ? "1px dotted grey" : "none",
-  borderBottom: isDraggingOver ? "1px dotted grey" : "none",
-  padding: 20,
-
+  border: isDraggingOver ? "1px dashed grey" : "none",
 });
