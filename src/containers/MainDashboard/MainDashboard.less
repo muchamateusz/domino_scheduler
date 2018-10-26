@@ -12,15 +12,6 @@
   justify-content: center;
   background-color: white;
   &__trash {
-    // old style
-    //
-    // color: black;
-    // border: 1px dashed grey;
-    // padding: 20px;
-    // margin: 0 10px;
-    // flex: 2;
-
-    // new style
     color: black;
     border: 2px dashed grey;
     margin: 0 10px;
@@ -32,25 +23,52 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    left: 15px;
+    left: 38px;
     top: 250px;
+    box-shadow: 0px 0px 30px grey;
+    &:hover {
+      transform: scale(1);
+      &::before {
+        top: -15px;
+        transform: translateY(-20px) translateX(25px) rotateZ(50deg);
+      }
+      &::after {
+        left: -13px;
+        top: 100px;
+        transform: rotateZ(-35deg);
+      }
+    }
     &::before {
+      transition: transform 0.4s ease-in;
       content: '';
       position: fixed;
       width: 90px;
       height: 20px;
       border: 2px dashed grey;
-      top: 240px;
+      top: 235px;
       background-color: lightgray;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
+    }
+    &::after {
+      content: '';
+      transition: transform 0.4s ease-out;
+      position: fixed;
+      width: 15px;
+      height: 2px;
+      border: 2px solid grey;
+      top: 352px;
+      left: 37px;
+      background-color: lightgray;
     }
   }
   &__toolbox {
     color: black;
     padding: 20px;
-    margin: 0 10px;
-    flex: 1;
+    margin: 0 20px 0 10px;
+    flex: 1 1;
+    border: 2px dotted grey;
+    border-radius: 10px;
   }
   &__time-axis {
     display: flex;
@@ -121,8 +139,9 @@
         padding: 10px;
       }
       &--ghost {
+        height: 24px;
         box-shadow: none;
-        border: 1px dashed grey;
+        border: 1px dotted grey;
         background-color: white;
         color: grey;
       }

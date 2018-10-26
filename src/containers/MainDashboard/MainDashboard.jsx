@@ -10,6 +10,7 @@ import {
   parseTimeFormat
 } from "common/functions";
 import { ITEM_TYPES } from "common/enums";
+import Icon from "common/components/Icon/Icon";
 
 import "./MainDashboard.less";
 
@@ -136,8 +137,7 @@ class MainDashboard extends Component {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                Trash Can
-                {provided.placeholder}
+                {/* <Icon iconName="faTrashAlt"/> */}
               </div>
             )}
           </Droppable>

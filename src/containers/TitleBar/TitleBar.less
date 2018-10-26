@@ -1,25 +1,29 @@
 .title-bar {
-  height: 100px;
-  background-color: grey;
+  height: 110px;
+  background-color: white;
   position: fixed;
   top: 0;
+  color: black;
   left: 0;
   width: 100%;
   z-index: 2;
+  box-sizing: border-box;
   &__title-area {
     position: relative;
-    height: 80px;
+    height: 76px;
     padding: 10px;
     display: flex;
-    flex: 1;
+    flex: 1 1;
     justify-content: center;
     flex-direction: column;
     align-items: flex-end;
+    border: 2px solid #0f7fa1;
+    margin: 10px;
     &::after {
       content: "";
       background: linear-gradient(to left, #18b153, #0f7fa1);
       width: 120px;
-      height: 80px;
+      height: 75px;
       position: absolute;
       left: 20px;
       border: 1px solid green;
@@ -31,7 +35,7 @@
       content: "";
       background: linear-gradient(to right, #18b153, #0f7fa1);
       width: 120px;
-      height: 80px;
+      height: 75px;
       position: absolute;
       left: 40px;
       border: 1px solid #18b1a0;
