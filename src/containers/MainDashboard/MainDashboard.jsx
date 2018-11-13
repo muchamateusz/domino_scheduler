@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import classNames from "classnames";
-
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import TimeLineItem from "./TimeLineItem/TimeLineItem";
 import {
   reorder,
   getItems,
   getListStyle,
-  getItemStyle,
   parseTimeFormat
 } from "common/functions";
 import { ITEM_TYPES } from "common/enums";
-import Icon from "common/components/Icon/Icon";
 
 import "./MainDashboard.less";
 
@@ -45,15 +42,28 @@ class MainDashboard extends Component {
     }
   };
 
-  onClickHandler = event => {
-    console.log("event :", event);
+  changeName = param => {
+    console.log(param);
     debugger;
+  };
+
+  onClickHandler = item => e => {
+    this.setState(prevState => {
+      const newState = { ...prevState };
+      if (newState.items[item.index].type === ITEM_TYPES.EDIT_MODE) {
+        newState.items[item.index].type = ITEM_TYPES.ACTIVE;
+        newState.items[item.index].content = item.text;
+      } else {
+        newState.items[item.index].type = ITEM_TYPES.EDIT_MODE;
+      }
+      return { ...newState };
+    });
   };
 
   render() {
     return (
       <div className="main-dashboard">
-        <DragDropContext onDragEnd={this.onDragEnd}>
+        <DragDropContext onDragEnd={this.onDragEnd} onClick={this.changeName}>
           <div className="main-dashboard__toolbox">Toolbox</div>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -75,57 +85,14 @@ class MainDashboard extends Component {
                   ref={provided.innerRef}
                   style={getListStyle(snapshot.isDraggingOver)}
                 >
-                  {this.state.items.map((item, index) => {
-                    const renderedElement =
-                      item.type === ITEM_TYPES.ACTIVE ? (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                          data-react-beautiful-dnd-drag-handle
-                        >
-                          {(provided, snapshot) => (
-                            <div
-                              className={classNames(
-                                "main-dashboard__assignments-axis__item",
-                                {
-                                  "main-dashboard__assignments-axis__item--ghost":
-                                    item.type === ITEM_TYPES.GHOST
-                                }
-                              )}
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style,
-                                item.type
-                              )}
-                            >
-                              <div className="main-dashboard__item-content">
-                                {item.content}
-                              </div>
-                            </div>
-                          )}
-                        </Draggable>
-                      ) : (
-                        <div
-                          className={classNames(
-                            "main-dashboard__assignments-axis__item",
-                            {
-                              "main-dashboard__assignments-axis__item--ghost":
-                                item.type === ITEM_TYPES.GHOST
-                            }
-                          )}
-                          onClick={this.onClickHandler}
-                        >
-                          <div className="main-dashboard__item-content">
-                            {item.content}
-                          </div>
-                        </div>
-                      );
-                    return renderedElement;
-                  })}
+                  {this.state.items.map((item, index) => (
+                    <TimeLineItem
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      onClickHandler={this.onClickHandler}
+                    />
+                  ))}
                 </div>
               </React.Fragment>
             )}
@@ -136,9 +103,7 @@ class MainDashboard extends Component {
                 className="main-dashboard__trash"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-              >
-                {/* <Icon iconName="faTrashAlt"/> */}
-              </div>
+              />
             )}
           </Droppable>
         </DragDropContext>
