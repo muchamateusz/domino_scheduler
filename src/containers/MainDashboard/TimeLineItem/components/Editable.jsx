@@ -16,9 +16,14 @@ const Editable = ({ item, index, ...props }) => {
       })}
     >
       <div className="main-dashboard__item-content">
-        <input type="text" value={text} onChange={handleInputChange} />
+        <input
+          type="text"
+          value={text}
+          onChange={handleInputChange}
+          title={text.length > 15 ? text : null}
+        />
         <button
-          type="button"
+          type="submit"
           onClick={props.onClickHandler({ ...item, index, text })}
         >
           OK

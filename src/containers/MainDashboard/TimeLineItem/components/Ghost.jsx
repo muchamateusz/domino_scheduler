@@ -12,7 +12,12 @@ const Ghost = ({ item, index, ...props }) => {
       })}
       onClick={props.onClickHandler({ ...item, index })}
     >
-      <div className="main-dashboard__item-content">{item.content}</div>
+      <div
+        className="main-dashboard__item-content"
+        title={item.content.length > 25 ? item.content : null}
+      >
+        {item.content}
+      </div>
     </div>
   );
 };

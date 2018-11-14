@@ -13,11 +13,12 @@ import "./MainDashboard.less";
 
 class MainDashboard extends Component {
   state = {
-    items: []
+    items: [],
+    itemsAmount: 12
   };
 
   componentDidMount() {
-    const items = getItems(24);
+    const items = getItems(this.state.itemsAmount);
     this.setState({ items });
   }
 
@@ -63,19 +64,19 @@ class MainDashboard extends Component {
   render() {
     return (
       <div className="main-dashboard">
-        <DragDropContext onDragEnd={this.onDragEnd} onClick={this.changeName}>
+        <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="main-dashboard__toolbox">Toolbox</div>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <React.Fragment>
                 <div className="main-dashboard__time-axis">
-                  {[...Array(24)].map((_, index) => {
+                  {[...Array(this.state.itemsAmount)].map((_, index) => {
                     return (
                       <div
                         className="main-dashboard__time-axis__item"
                         key={`${_}_${index}`}
                       >
-                        {parseTimeFormat(index)}
+                        {parseTimeFormat(index, this.state.itemsAmount)}
                       </div>
                     );
                   })}
