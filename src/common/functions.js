@@ -11,7 +11,7 @@ export const getItems = count =>
   Array.from({ length: count }, (_, index) => index).map(index => ({
     id: `item-${index}`,
     type: ITEM_TYPES.ACTIVE,
-    content: `item ${index}`
+    content: `click me`
   }));
 
 export const getItemStyle = (
@@ -20,7 +20,6 @@ export const getItemStyle = (
   type,
   color = null
 ) => {
-  // debugger;
   const bgColor = color !== null ? color : "transparent";
   let bgImage;
   if (color !== null && color !== "rgba(0, 0, 0, 0)") {

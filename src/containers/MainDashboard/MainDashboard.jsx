@@ -14,7 +14,7 @@ import "./MainDashboard.less";
 class MainDashboard extends Component {
   state = {
     items: [],
-    itemsAmount: 12
+    itemsAmount: 24
   };
 
   componentDidMount() {
@@ -43,11 +43,6 @@ class MainDashboard extends Component {
     }
   };
 
-  changeName = param => {
-    console.log(param);
-    debugger;
-  };
-
   onClickHandler = item => e => {
     this.setState(prevState => {
       const newState = { ...prevState };
@@ -65,7 +60,7 @@ class MainDashboard extends Component {
     return (
       <div className="main-dashboard">
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <div className="main-dashboard__toolbox">Toolbox</div>
+          <div className="main-dashboard__toolbox" />
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <React.Fragment>
