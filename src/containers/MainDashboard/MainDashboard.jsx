@@ -6,8 +6,8 @@ import {
   getItems,
   getListStyle,
   parseTimeFormat
-} from "common/functions";
-import { ITEM_TYPES } from "common/enums";
+} from "../../common/functions";
+import { ITEM_TYPES } from "../../common/enums";
 
 import "./MainDashboard.less";
 

@@ -12,16 +12,21 @@
   & input {
     border: none;
     border-bottom: 1px solid grey;
-    padding: 0 10px;
-    margin-right: 5px;
+    margin: 0 10px;
     width: 60%;
+    box-sizing: content-box;
+    &:focus-within {
+      outline: 0;
+    }
   }
-  & button {
-    border-radius: 10px;
-    width: 40px;
+  & button {    
+    border-radius: 5px;
+    width: 50px;
+    border: 0;
+    background: #a5d5f7;
     &:hover {
       cursor: pointer;
-      font-weight: bold;
+      background-color: #a5d5f7a6;
     }
   }
 }

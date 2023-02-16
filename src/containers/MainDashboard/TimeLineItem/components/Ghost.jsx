@@ -1,8 +1,8 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { getItemStyle } from "common/functions";
+import { getItemStyle } from "../../../../common/functions";
 import classNames from "classnames";
-import { ITEM_TYPES } from "common/enums";
+import { ITEM_TYPES } from "../../../../common/enums";
 
 const Ghost = ({ item, index, ...props }) => {
   return (

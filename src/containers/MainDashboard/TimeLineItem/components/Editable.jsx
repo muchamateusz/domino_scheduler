@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { ITEM_TYPES } from "common/enums";
+import { ITEM_TYPES } from "../../../../common/enums";
 
 const Editable = ({ item, index, ...props }) => {
   const [text, setText] = useState(item.content);
@@ -19,7 +19,7 @@ const Editable = ({ item, index, ...props }) => {
         <form onSubmit={props.onClickHandler({ ...item, index, text })}>
           <input
             type="text"
-            value={text}
+            placeholder={text}
             onChange={handleInputChange}
             title={text.length > 15 ? text : null}
           />

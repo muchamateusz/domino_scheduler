@@ -1,5 +1,5 @@
 import React from "react";
-import { ITEM_TYPES } from "common/enums";
+import { ITEM_TYPES } from "../../../common/enums";
 import Ghost from "./components/Ghost";
 import Active from "./components/Active";
 import Editable from "./components/Editable";

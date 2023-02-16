@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { Draggable } from "react-beautiful-dnd";
-import { getItemStyle } from "common/functions";
-import { ITEM_TYPES } from "common/enums";
+import { getItemStyle } from "../../../../common/functions";
+import { ITEM_TYPES } from "../../../../common/enums";
 import { TwitterPicker } from "react-color";
 
 class Active extends Component {
